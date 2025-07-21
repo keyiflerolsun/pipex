@@ -1,4 +1,5 @@
 CFILES = utils.c \
+		 path.c \
 		 init_fd.c \
 		 cmd.c
 
