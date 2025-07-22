@@ -48,6 +48,7 @@ clean:
 	@printf "$(RED)» 🧹 Cleaning  $(RESET)» $(CYAN)./$(OBJDIR) $(RESET)\n"
 	@rm -rf $(OBJDIR)
 	@$(MAKE) -C $(dir $(SRC)) clean
+	@$(MAKE) -C $(dir $(GNL)) clean
 	@$(MAKE) -C $(dir $(PRINTF)) clean
 	@$(MAKE) -C $(dir $(LIBFT)) clean
 
@@ -55,6 +56,7 @@ fclean: clean
 	@printf "$(RED)» 🔥 Removing  $(RESET)» $(MAGENTA)./$(NAME)$(RESET)\n"
 	@rm -f $(NAME)
 	@$(MAKE) -C $(dir $(SRC)) fclean
+	@$(MAKE) -C $(dir $(GNL)) fclean
 	@$(MAKE) -C $(dir $(PRINTF)) fclean
 	@$(MAKE) -C $(dir $(LIBFT)) fclean
 
