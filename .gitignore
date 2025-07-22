@@ -2,7 +2,6 @@
 **/obj/
 **/*.a
 pipex
-pipex_bonus
-infile
-outfile
-tmp
+in*
+out*
+here_doc

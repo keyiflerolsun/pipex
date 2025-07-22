@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_fd.c                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osancak <osancak@student.42istanbul.com.tr +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/20 09:38:01 by osancak           #+#    #+#             */
-/*   Updated: 2025/07/21 11:03:09 by osancak          ###   ########.fr       */
+/*   Created: 2025/06/16 19:03:45 by osancak           #+#    #+#             */
+/*   Updated: 2025/07/22 10:28:50 by osancak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	init_fd(t_fd *fd, char *input_file, char *output_file)
-{
-	fd->in_f = open(input_file, O_RDONLY);
-	if (fd->in_f < 0)
-		error_exit("infile", 1);
-	fd->out_f = open(output_file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (fd->out_f < 0)
-		error_exit("outfile", 1);
-	if (pipe(fd->pipe) == -1)
-		error_exit("pipe", 1);
-}
+# include "ft_printf.h"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+char	*gnl_strjoin(char *s1, char *s2, int which_free);
+
+#endif

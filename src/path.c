@@ -6,20 +6,20 @@
 /*   By: osancak <osancak@student.42istanbul.com.tr +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:02:35 by osancak           #+#    #+#             */
-/*   Updated: 2025/07/21 16:38:57 by osancak          ###   ########.fr       */
+/*   Updated: 2025/07/22 15:21:16 by osancak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	set_path(t_fd *fd, char **envp)
+void	set_path(t_vars *vars, char **envp)
 {
 	char	*path;
 
 	path = NULL;
 	while (*envp)
 	{
-		if (ft_strstr(*envp, "PATH=") && ft_strstr(*envp, "/bin:"))
+		if (ft_strstr(*envp, "PATH=") && ft_strstr(*envp, "bin"))
 		{
 			path = *envp;
 			break ;
@@ -27,9 +27,9 @@ void	set_path(t_fd *fd, char **envp)
 		envp++;
 	}
 	if (path)
-		fd->path = ft_split(ft_strstr(path, "/"), ':');
+		vars->path = ft_split(path + 5, ':');
 	else
-		fd->path = NULL;
+		vars->path = NULL;
 }
 
 char	*get_path(char **path, char *command)
@@ -37,8 +37,8 @@ char	*get_path(char **path, char *command)
 	char	*ex_path;
 	char	*____tmp;
 
-	if (access(command, X_OK) == 0)
-		return (command);
+	if (access(command, F_OK) == 0)
+		return (ft_strjoin("", command));
 	while (*path)
 	{
 		____tmp = ft_strjoin(*path, "/");

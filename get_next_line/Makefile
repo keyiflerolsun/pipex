@@ -1,16 +1,11 @@
-CFILES = utils.c \
-		 path.c \
-		 init_vars.c \
-		 pipe.c \
-		 heredot.c \
-		 cmd.c
+CFILES = get_next_line.c get_next_line_utils.c
 
 OBJDIR = obj
 OFILES = $(addprefix $(OBJDIR)/, $(CFILES:.c=.o))
 
-NAME   = pipex.a
+NAME   = get_next_line.a
 CC     = cc
-CFLAGS =  -Wall -Wextra -Werror -I../libft -I../ft_printf -I../get_next_line
+CFLAGS = -Wall -Wextra -Werror -I../libft -I../ft_printf
 
 GREEN   = \033[0;32m
 YELLOW  = \033[0;33m
@@ -28,7 +23,7 @@ $(NAME): $(OFILES)
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(OBJDIR)
-	@printf "$(BLUE)» ⚙️  Compiling $(RESET)» $(YELLOW)%14s$(RESET) | $(GREEN)%s$(RESET)\n" "$<" "$@"
+	@printf "$(BLUE)» ⚙️  Compiling $(RESET)» $(YELLOW)%22s$(RESET) | $(GREEN)%s$(RESET)\n" "$<" "$@"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

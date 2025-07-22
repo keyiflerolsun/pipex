@@ -5,11 +5,12 @@ OFILES = $(addprefix $(OBJDIR)/, $(CFILES:.c=.o))
 
 NAME      = pipex
 CC        = cc
-CFLAGS    = -Wall -Wextra -Werror -Ilibft -Ift_printf -Isrc
+CFLAGS    = -Wall -Wextra -Werror -Ilibft -Ift_printf -Iget_next_line -Isrc
 
 MAKEFLAGS += --no-print-directory --silent
 LIBFT      = libft/libft.a
 PRINTF     = ft_printf/libftprintf.a
+GNL        = get_next_line/get_next_line.a
 SRC        = src/pipex.a
 
 GREEN   = \033[0;32m
@@ -22,9 +23,9 @@ RESET   = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OFILES) $(SRC) $(PRINTF) $(LIBFT)
+$(NAME): $(OFILES) $(SRC) $(GNL) $(PRINTF) $(LIBFT)
 	@printf "$(GREEN)» 📦 Linking   $(RESET)» $(MAGENTA)./$(NAME)$(RESET)\n"
-	@$(CC) $(CFLAGS) $(OFILES) $(SRC) $(PRINTF) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OFILES) $(SRC) $(GNL) $(PRINTF) $(LIBFT) -o $(NAME)
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(OBJDIR)
@@ -32,6 +33,9 @@ $(OBJDIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(SRC): FORCE
+	@$(MAKE) -C $(dir $@)
+
+$(GNL): FORCE
 	@$(MAKE) -C $(dir $@)
 
 $(PRINTF): FORCE
