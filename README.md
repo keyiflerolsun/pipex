@@ -86,6 +86,14 @@ pipex/
 
 ## 🔧 Teknik Detaylar
 
+### Pipe İşlem Şeması
+```
+infile ─┬─ cmd0 ─┬─ cmd1 ─┬─ cmd2 ─┬─ outfile
+        │        │        │
+        └─ last_read ─┬─ curr_pipe[1]
+                     └─ curr_pipe[0] → next last_read
+```
+
 ### Kullanılan System Call'lar
 - `fork()` - Yeni process oluşturma
 - `pipe()` - Pipe oluşturma
