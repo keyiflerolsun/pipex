@@ -6,7 +6,7 @@
 /*   By: osancak <osancak@student.42istanbul.com.tr +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 06:40:48 by osancak           #+#    #+#             */
-/*   Updated: 2025/07/22 13:51:27 by osancak          ###   ########.fr       */
+/*   Updated: 2025/07/23 19:42:47 by osancak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_vars
 	int		last_read;
 	char	**path;
 	pid_t	cmds[MAX_PIPE];
+	int		exit_codes[MAX_PIPE];
 	int		cmd_count;
 	int		cmd_index;
 }			t_vars;
@@ -50,5 +51,6 @@ int			get_pipe_in(t_vars *vars);
 int			get_pipe_out(t_vars *vars);
 void		clean_pipe(t_vars *vars);
 pid_t		ft_heredot(char *limiter);
+int			exec_prog(t_vars *vars, int argc, char **argv, char **envp);
 
 #endif

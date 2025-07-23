@@ -3,7 +3,8 @@ CFILES = utils.c \
 		 init_vars.c \
 		 pipe.c \
 		 heredot.c \
-		 cmd.c
+		 cmd.c \
+		 exec.c
 
 OBJDIR = obj
 OFILES = $(addprefix $(OBJDIR)/, $(CFILES:.c=.o))

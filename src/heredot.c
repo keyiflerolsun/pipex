@@ -6,7 +6,7 @@
 /*   By: osancak <osancak@student.42istanbul.com.tr +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:23:12 by osancak           #+#    #+#             */
-/*   Updated: 2025/07/22 11:36:47 by osancak          ###   ########.fr       */
+/*   Updated: 2025/07/23 17:54:14 by osancak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	get_input(int fd, char *limiter)
 	line = "";
 	while (line)
 	{
-		ft_printf("%s%sheredot %s%s>%s ", YELLOW, BOLD, BLUE, BOLD, RESET);
+		ft_printf("%s%sheredot %s%s>%s ", MAGENTA, BOLD, BLUE, BOLD, RESET);
 		line = get_next_line(0);
 		if (ft_strstr(line, limiter))
 		{

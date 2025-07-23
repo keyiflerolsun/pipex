@@ -6,7 +6,7 @@
 /*   By: osancak <osancak@student.42istanbul.com.tr +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:02:35 by osancak           #+#    #+#             */
-/*   Updated: 2025/07/22 15:21:16 by osancak          ###   ########.fr       */
+/*   Updated: 2025/07/23 20:30:41 by osancak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@ void	set_path(t_vars *vars, char **envp)
 	char	*path;
 
 	path = NULL;
+	vars->path = NULL;
 	while (*envp)
 	{
 		if (ft_strstr(*envp, "PATH=") && ft_strstr(*envp, "bin"))
 		{
-			path = *envp;
+			path = *envp + 5;
 			break ;
 		}
 		envp++;
 	}
 	if (path)
-		vars->path = ft_split(path + 5, ':');
-	else
-		vars->path = NULL;
+		vars->path = ft_split(path, ':');
 }
 
 char	*get_path(char **path, char *command)
@@ -37,8 +36,13 @@ char	*get_path(char **path, char *command)
 	char	*ex_path;
 	char	*____tmp;
 
-	if (access(command, F_OK) == 0)
-		return (ft_strjoin("", command));
+	if (ft_strchr(command, '/'))
+	{
+		if (access(command, F_OK) == 0)
+			return (ft_strjoin("", command));
+		else
+			*path = NULL;
+	}
 	while (*path)
 	{
 		____tmp = ft_strjoin(*path, "/");
@@ -49,6 +53,7 @@ char	*get_path(char **path, char *command)
 		free(ex_path);
 		path++;
 	}
+	errno = -42;
 	return (NULL);
 }
 
