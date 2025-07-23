@@ -2,5 +2,7 @@
 **/obj/
 **/*.a
 pipex
+outfile
+infile
 here_doc
 tr
