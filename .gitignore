@@ -2,7 +2,7 @@
 **/obj/
 **/*.a
 pipex
-outfile
-infile
+in*
+out*
 here_doc
 tr

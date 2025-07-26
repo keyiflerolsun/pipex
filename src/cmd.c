@@ -6,7 +6,7 @@
 /*   By: osancak <osancak@student.42istanbul.com.tr +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 08:30:47 by osancak           #+#    #+#             */
-/*   Updated: 2025/07/23 19:29:00 by osancak          ###   ########.fr       */
+/*   Updated: 2025/07/24 10:57:24 by osancak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,8 @@ static void	free_allocs(char **split, char *ex_path, char **path)
 
 static void	fd_apply(t_vars *vars)
 {
-	int	input;
-	int	output;
-
-	input = get_pipe_in(vars);
-	output = get_pipe_out(vars);
-	dup2(input, STDIN_FILENO);
-	dup2(output, STDOUT_FILENO);
+	dup2(get_pipe_in(vars), STDIN_FILENO);
+	dup2(get_pipe_out(vars), STDOUT_FILENO);
 }
 
 static char	*err_cmd(char *command)
